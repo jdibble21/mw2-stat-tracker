@@ -7,3 +7,4 @@
 /.graphql-generated/
 /public/_graphql/
 /error.log
+/node_modules

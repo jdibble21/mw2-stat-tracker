@@ -13,18 +13,15 @@ class MyAdmin extends ModelAdmin
 
     private static $menu_title = 'Player Management';
     private static $menu_icon_class = 'font-icon-block-content';
+    private static $menu_priority = 3;
     
     public function getEditForm($id = null, $fields = null){
         $form = parent::getEditForm($id, $fields);
+        $class = $this->modelClass;
 
-        // $gridFieldName is generated from the ModelClass, eg if the Class 'Product'
-        // is managed by this ModelAdmin, the GridField for it will also be named 'Product'
-        $gridFieldName = $this->sanitiseClassName($this->modelClass);
-        $gridField = $form->Fields()->fieldByName($gridFieldName);
+        $listField = $form->Fields()->fieldByName($class);
 
-        // modify the list view.
-        $gridField->getConfig()->addComponent(GridFieldFilterHeader::create());
-
+        
         return $form;
     }
 }
